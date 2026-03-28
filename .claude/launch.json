@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "bauma-site",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "/Users/aduma/Desktop/Claude Code/bauma-sportimpianti", "-l", "3456"],
+      "port": 3456
+    }
+  ]
+}

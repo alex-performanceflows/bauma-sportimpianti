@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bauma Sportimpianti - Impianti Sportivi dal 1970</title>
+    <meta name="description" content="Bauma Sportimpianti - Dal 1970 realizziamo impianti sportivi completi: erba sintetica, pavimentazioni PVC, resine, attrezzature e recinzioni. Villorba (TV).">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --green-900: #1a3a1a;
+            --green-800: #1e5631;
+            --green-700: #2d7a46;
+            --green-600: #3a9d5e;
+            --green-500: #4caf50;
+            --green-400: #66bb6a;
+            --green-100: #e8f5e9;
+            --green-50: #f1f8f2;
+            --gold: #c8a84e;
+            --gold-light: #f5ecd4;
+            --dark: #1a1a2e;
+            --gray-900: #212121;
+            --gray-700: #424242;
+            --gray-500: #757575;
+            --gray-300: #e0e0e0;
+            --gray-100: #f5f5f5;
+            --white: #ffffff;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 20px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 40px rgba(0,0,0,0.12);
+            --shadow-xl: 0 20px 60px rgba(0,0,0,0.15);
+            --radius: 12px;
+            --radius-lg: 20px;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--gray-900);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background: var(--white);
+        }
+
+        h1, h2, h3, h4 { font-family: 'Plus Jakarta Sans', 'Inter', sans-serif; line-height: 1.15; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+        /* ─── NAVBAR ─── */
+        .navbar {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: transparent;
+            backdrop-filter: none;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+        .navbar.scrolled {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            box-shadow: var(--shadow-md);
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+        }
+        .navbar .container {
+            display: flex; align-items: center; justify-content: space-between;
+            height: 72px;
+        }
+        .logo {
+            display: flex; align-items: center; gap: 12px;
+            text-decoration: none; color: white; transition: color 0.3s;
+        }
+        .navbar.scrolled .logo { color: var(--green-800); }
+        .logo-icon {
+            width: 44px; height: 44px; background: var(--green-700);
+            border-radius: 10px; display: flex; align-items: center; justify-content: center;
+        }
+        .logo-icon svg { width: 26px; height: 26px; fill: white; }
+        .logo-text { font-weight: 800; font-size: 1.15rem; letter-spacing: -0.02em; }
+        .logo-text span { display: block; font-size: 0.65rem; font-weight: 500; color: rgba(255,255,255,0.6); letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.3s; }
+        .navbar.scrolled .logo-text span { color: var(--gray-500); }
+        .logo-icon { transition: background 0.3s; }
+        .navbar.scrolled .logo-icon { background: var(--green-700); }
+
+        .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+        .nav-links a {
+            text-decoration: none; color: rgba(255,255,255,0.9); font-size: 0.9rem;
+            font-weight: 500; transition: color 0.2s; position: relative;
+        }
+        .navbar.scrolled .nav-links a { color: var(--gray-700); }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px;
+            background: var(--green-600); transition: width 0.3s;
+        }
+        .nav-links a:hover { color: white; }
+        .navbar.scrolled .nav-links a:hover { color: var(--green-700); }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-cta {
+            background: white !important; color: var(--green-700) !important;
+            padding: 10px 24px !important; border-radius: 50px !important;
+            font-weight: 600 !important; box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+            transition: all 0.3s ease !important;
+        }
+        .nav-cta::after { display: none !important; }
+        .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,0,0,0.2) !important; }
+        .navbar.scrolled .nav-cta {
+            background: var(--green-700) !important; color: white !important;
+            box-shadow: 0 4px 14px rgba(45,122,70,0.35) !important;
+        }
+        .navbar.scrolled .nav-cta:hover {
+            background: var(--green-800) !important;
+        }
+
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 12px 28px; border-radius: 50px; font-weight: 600;
+            font-size: 0.9rem; text-decoration: none; transition: all 0.3s ease;
+            cursor: pointer; border: none;
+        }
+        .btn-primary {
+            background: var(--green-700); color: white;
+            box-shadow: 0 4px 14px rgba(45,122,70,0.35);
+        }
+        .btn-primary:hover {
+            background: var(--green-800); transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(45,122,70,0.45);
+        }
+        .btn-outline {
+            background: transparent; color: var(--green-700);
+            border: 2px solid var(--green-700);
+        }
+        .btn-outline:hover { background: var(--green-700); color: white; }
+        .btn-white {
+            background: white; color: var(--green-800);
+            box-shadow: var(--shadow-md);
+        }
+        .btn-white:hover { transform: translateY(-1px); box-shadow: var(--shadow-lg); }
+        .btn-ghost {
+            background: rgba(255,255,255,0.15); color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        .btn-ghost:hover { background: rgba(255,255,255,0.25); }
+
+        .mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+        .mobile-toggle span {
+            display: block; width: 24px; height: 2px; background: var(--gray-900);
+            margin: 5px 0; transition: 0.3s;
+        }
+
+        /* ─── HERO ─── */
+        .hero {
+            position: relative; min-height: 100vh; display: flex; align-items: center;
+            background: linear-gradient(165deg, rgba(26,58,26,0.82) 0%, rgba(30,86,49,0.75) 40%, rgba(45,122,70,0.72) 100%),
+                        url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1920&q=80') center/cover no-repeat;
+            overflow: hidden; padding-top: 72px;
+        }
+        .hero::before {
+            content: ''; position: absolute; inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='m36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm-30 30v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .hero-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+            align-items: center; position: relative; z-index: 2;
+        }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+            padding: 8px 16px; border-radius: 50px; color: var(--gold);
+            font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em;
+            text-transform: uppercase; margin-bottom: 24px;
+        }
+        .hero-badge svg { width: 16px; height: 16px; fill: var(--gold); }
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 3.8rem); color: white;
+            margin-bottom: 20px; letter-spacing: -0.03em;
+        }
+        .hero h1 .accent { color: var(--green-400); }
+        .hero p {
+            font-size: 1.15rem; color: rgba(255,255,255,0.75);
+            max-width: 520px; margin-bottom: 36px; line-height: 1.7;
+        }
+        .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+        .hero-visual {
+            position: relative; display: flex; justify-content: center;
+        }
+        .hero-card {
+            background: rgba(255,255,255,0.1); backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.15); border-radius: var(--radius-lg);
+            padding: 32px; width: 100%; max-width: 440px;
+        }
+        .hero-stats {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+        }
+        .stat-item { text-align: center; }
+        .stat-number {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 2.5rem; font-weight: 800; color: white;
+            line-height: 1;
+        }
+        .stat-label { font-size: 0.8rem; color: rgba(255,255,255,0.6); margin-top: 4px; }
+        .hero-card-divider {
+            height: 1px; background: rgba(255,255,255,0.15); margin: 24px 0;
+        }
+        .hero-card-features { display: flex; flex-direction: column; gap: 12px; }
+        .hero-card-feature {
+            display: flex; align-items: center; gap: 10px;
+            color: rgba(255,255,255,0.8); font-size: 0.9rem;
+        }
+        .hero-card-feature svg { width: 20px; height: 20px; fill: var(--green-400); flex-shrink: 0; }
+
+        /* ─── TRUST BAR ─── */
+        .trust-bar {
+            background: var(--gray-100); border-bottom: 1px solid var(--gray-300);
+            padding: 28px 0;
+        }
+        .trust-items {
+            display: flex; justify-content: center; align-items: center;
+            gap: 48px; flex-wrap: wrap;
+        }
+        .trust-item {
+            display: flex; align-items: center; gap: 10px;
+            color: var(--gray-500); font-size: 0.85rem; font-weight: 500;
+        }
+        .trust-item svg { width: 22px; height: 22px; fill: var(--green-600); }
+
+        /* ─── SECTIONS ─── */
+        section { padding: 100px 0; }
+
+        .section-header {
+            text-align: center; max-width: 680px; margin: 0 auto 60px;
+        }
+        .section-tag {
+            display: inline-block; background: var(--green-100); color: var(--green-700);
+            padding: 6px 16px; border-radius: 50px; font-size: 0.78rem;
+            font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em;
+            margin-bottom: 16px;
+        }
+        .section-header h2 {
+            font-size: clamp(2rem, 3.5vw, 2.8rem); color: var(--gray-900);
+            margin-bottom: 16px; letter-spacing: -0.02em;
+        }
+        .section-header p { color: var(--gray-500); font-size: 1.05rem; }
+
+        /* ─── PRODUCTS ─── */
+        .products { background: var(--white); }
+        .products-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+        }
+        .product-card {
+            background: var(--white); border: 1px solid var(--gray-300);
+            border-radius: var(--radius-lg); overflow: hidden;
+            transition: all 0.35s ease; cursor: pointer; position: relative;
+        }
+        .product-card:hover {
+            transform: translateY(-6px); box-shadow: var(--shadow-xl);
+            border-color: var(--green-400);
+        }
+        .product-card-img {
+            height: 200px; overflow: hidden; position: relative;
+        }
+        .product-card-img img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .product-card:hover .product-card-img img { transform: scale(1.08); }
+        .product-card-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.5));
+        }
+        .product-card-body { padding: 24px; }
+        .product-card-body h3 {
+            font-size: 1.2rem; margin-bottom: 10px; color: var(--gray-900);
+        }
+        .product-card-body p {
+            font-size: 0.88rem; color: var(--gray-500); line-height: 1.6;
+            margin-bottom: 16px;
+        }
+        .product-link {
+            display: inline-flex; align-items: center; gap: 6px;
+            color: var(--green-700); font-weight: 600; font-size: 0.85rem;
+            text-decoration: none; transition: gap 0.3s;
+        }
+        .product-link:hover { gap: 10px; }
+        .product-link svg { width: 16px; height: 16px; fill: currentColor; }
+
+        /* ─── WHY US ─── */
+        .why-us { background: var(--gray-100); }
+        .why-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+        }
+        .why-card {
+            background: var(--white); padding: 32px 24px; border-radius: var(--radius);
+            text-align: center; transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+        .why-card:hover {
+            transform: translateY(-4px); box-shadow: var(--shadow-lg);
+            border-color: var(--green-400);
+        }
+        .why-icon {
+            width: 56px; height: 56px; border-radius: 14px;
+            background: var(--green-100); display: flex; align-items: center;
+            justify-content: center; margin: 0 auto 20px;
+        }
+        .why-icon svg { width: 28px; height: 28px; fill: var(--green-700); }
+        .why-card h3 { font-size: 1.05rem; margin-bottom: 10px; }
+        .why-card p { font-size: 0.85rem; color: var(--gray-500); line-height: 1.6; }
+
+        /* ─── CTA SECTION ─── */
+        .cta-section {
+            background: linear-gradient(135deg, var(--green-900), var(--green-700));
+            position: relative; overflow: hidden;
+        }
+        .cta-section::before {
+            content: ''; position: absolute; top: -50%; right: -20%;
+            width: 600px; height: 600px; border-radius: 50%;
+            background: rgba(255,255,255,0.04);
+        }
+        .cta-content {
+            text-align: center; position: relative; z-index: 2;
+            max-width: 680px; margin: 0 auto;
+        }
+        .cta-content h2 {
+            font-size: clamp(2rem, 3.5vw, 2.6rem); color: white;
+            margin-bottom: 16px;
+        }
+        .cta-content p {
+            color: rgba(255,255,255,0.75); font-size: 1.1rem;
+            margin-bottom: 36px;
+        }
+        .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+        /* ─── CONTACT ─── */
+        .contact { background: var(--white); }
+        .contact-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+            align-items: start;
+        }
+        .contact-info { display: flex; flex-direction: column; gap: 28px; }
+        .contact-item {
+            display: flex; gap: 16px; align-items: flex-start;
+        }
+        .contact-icon {
+            width: 48px; height: 48px; border-radius: 12px;
+            background: var(--green-100); display: flex; align-items: center;
+            justify-content: center; flex-shrink: 0;
+        }
+        .contact-icon svg { width: 22px; height: 22px; fill: var(--green-700); }
+        .contact-item h4 { font-size: 0.95rem; margin-bottom: 4px; }
+        .contact-item p { font-size: 0.9rem; color: var(--gray-500); }
+        .contact-item a { color: var(--green-700); text-decoration: none; }
+        .contact-item a:hover { text-decoration: underline; }
+
+        .contact-form {
+            background: var(--gray-100); padding: 36px; border-radius: var(--radius-lg);
+        }
+        .contact-form h3 { font-size: 1.3rem; margin-bottom: 6px; }
+        .contact-form > p { color: var(--gray-500); font-size: 0.9rem; margin-bottom: 24px; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .form-group { margin-bottom: 16px; }
+        .form-group label {
+            display: block; font-size: 0.82rem; font-weight: 600;
+            color: var(--gray-700); margin-bottom: 6px;
+        }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%; padding: 12px 16px; border: 1px solid var(--gray-300);
+            border-radius: 10px; font-family: inherit; font-size: 0.9rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            background: var(--white);
+        }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            outline: none; border-color: var(--green-500);
+            box-shadow: 0 0 0 3px rgba(76,175,80,0.15);
+        }
+        .form-group textarea { resize: vertical; min-height: 100px; }
+        .form-submit { width: 100%; justify-content: center; font-size: 0.95rem; padding: 14px 32px; }
+
+        /* ─── FOOTER ─── */
+        .footer {
+            background: var(--dark); color: rgba(255,255,255,0.7); padding: 60px 0 28px;
+        }
+        .footer-grid {
+            display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px; margin-bottom: 40px;
+        }
+        .footer-brand .logo-text { color: white; }
+        .footer-brand .logo-text span { color: rgba(255,255,255,0.5); }
+        .footer-brand p { margin-top: 16px; font-size: 0.85rem; line-height: 1.7; max-width: 320px; }
+        .footer h4 {
+            color: white; font-size: 0.85rem; text-transform: uppercase;
+            letter-spacing: 0.08em; margin-bottom: 20px;
+        }
+        .footer ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+        .footer ul a {
+            color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.88rem;
+            transition: color 0.2s;
+        }
+        .footer ul a:hover { color: var(--green-400); }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px;
+            display: flex; justify-content: space-between; align-items: center;
+            font-size: 0.8rem; color: rgba(255,255,255,0.4);
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 1024px) {
+            .products-grid { grid-template-columns: repeat(2, 1fr); }
+            .why-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-toggle { display: block; }
+            .nav-links.active {
+                display: flex; flex-direction: column;
+                position: absolute; top: 72px; left: 0; right: 0;
+                background: white; padding: 24px; gap: 16px;
+                box-shadow: var(--shadow-lg);
+            }
+            .hero-grid { grid-template-columns: 1fr; text-align: center; }
+            .hero p { margin-left: auto; margin-right: auto; }
+            .hero-buttons { justify-content: center; }
+            .hero-visual { margin-top: 40px; }
+            .products-grid { grid-template-columns: 1fr; }
+            .why-grid { grid-template-columns: 1fr; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+            .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+            section { padding: 64px 0; }
+        }
+
+        /* ─── ANIMATIONS ─── */
+        .fade-up {
+            opacity: 0; transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+        .fade-up:nth-child(2) { transition-delay: 0.1s; }
+        .fade-up:nth-child(3) { transition-delay: 0.2s; }
+        .fade-up:nth-child(4) { transition-delay: 0.3s; }
+        .fade-up:nth-child(5) { transition-delay: 0.4s; }
+        .fade-up:nth-child(6) { transition-delay: 0.5s; }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+    <div class="container">
+        <a href="#" class="logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+            </div>
+            <div class="logo-text">
+                Bauma<br>Sportimpianti
+                <span>Dal 1970</span>
+            </div>
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#prodotti">Prodotti</a></li>
+            <li><a href="#perche-noi">Perch&eacute; Noi</a></li>
+            <li><a href="#contatti">Contatti</a></li>
+            <li><a href="#contatti" class="nav-cta">Richiedi Preventivo</a></li>
+        </ul>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-grid">
+            <div>
+                <div class="hero-badge">
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    Dal 1970 al servizio dello sport
+                </div>
+                <h1>Realizziamo il tuo <span class="accent">impianto sportivo</span> chiavi in mano</h1>
+                <p>Oltre 50 anni di esperienza nella progettazione e realizzazione di impianti sportivi completi. Erba sintetica, pavimentazioni, attrezzature e recinzioni certificate.</p>
+                <div class="hero-buttons">
+                    <a href="#contatti" class="btn btn-white">Richiedi un Preventivo Gratuito</a>
+                    <a href="#prodotti" class="btn btn-ghost">Scopri i Prodotti</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-card">
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">Anni di esperienza</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">500+</div>
+                            <div class="stat-label">Impianti realizzati</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">6</div>
+                            <div class="stat-label">Linee di prodotto</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Made in Italy</div>
+                        </div>
+                    </div>
+                    <div class="hero-card-divider"></div>
+                    <div class="hero-card-features">
+                        <div class="hero-card-feature">
+                            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+                            Conformi alle normative delle Federazioni Sportive
+                        </div>
+                        <div class="hero-card-feature">
+                            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+                            Garanzia e assistenza post-vendita
+                        </div>
+                        <div class="hero-card-feature">
+                            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+                            Sopralluogo e preventivo gratuiti
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+    <div class="container">
+        <div class="trust-items">
+            <div class="trust-item">
+                <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+                Certificazioni Federazioni Sportive
+            </div>
+            <div class="trust-item">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                Normative UNI e ITF
+            </div>
+            <div class="trust-item">
+                <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+                Partner dei migliori produttori
+            </div>
+            <div class="trust-item">
+                <svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+                Prezzi competitivi
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- PRODOTTI -->
+<section class="products" id="prodotti">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-tag">I Nostri Prodotti</div>
+            <h2>Soluzioni complete per ogni disciplina sportiva</h2>
+            <p>Dall'erba sintetica alle pavimentazioni in PVC, offriamo tutto il necessario per realizzare impianti sportivi di eccellenza.</p>
+        </div>
+        <div class="products-grid">
+            <div class="product-card fade-up">
+                <div class="product-card-img">
+                    <img src="https://images.unsplash.com/photo-1529900748604-07564a03e7a6?w=600&h=400&fit=crop" alt="Campo in erba sintetica">
+                    <div class="product-card-overlay"></div>
+                </div>
+                <div class="product-card-body">
+                    <h3>Erba Sintetica</h3>
+                    <p>Manti di altissima qualit&agrave; per calcio, calcetto, tennis e campi polifunzionali. Certificati dalle Federazioni Sportive, resistenti e a bassa manutenzione.</p>
+                    <a href="#contatti" class="product-link">Richiedi info <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6-6-6z"/></svg></a>
+                </div>
+            </div>
+            <div class="product-card fade-up">
+                <div class="product-card-img">
+                    <img src="https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?w=600&h=400&fit=crop" alt="Landscaping erba artificiale">
+                    <div class="product-card-overlay"></div>
+                </div>
+                <div class="product-card-body">
+                    <h3>Landscaping</h3>
+                    <p>Erba artificiale di ultima generazione per giardini, bordi piscine, parchi giochi e terrazze. Aspetto naturale, durata nel tempo e manutenzione ridotta.</p>
+                    <a href="#contatti" class="product-link">Richiedi info <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6-6-6z"/></svg></a>
+                </div>
+            </div>
+            <div class="product-card fade-up">
+                <div class="product-card-img">
+                    <img src="https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?w=600&h=400&fit=crop" alt="Pavimentazione PVC sportiva">
+                    <div class="product-card-overlay"></div>
+                </div>
+                <div class="product-card-body">
+                    <h3>Pavimentazioni PVC</h3>
+                    <p>Superfici sportive in PVC elastomerizzato con trattamento antibatterico. Per professionisti e mondo scolastico. Prodotto tennis certificato I.T.F.</p>
+                    <a href="#contatti" class="product-link">Richiedi info <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6-6-6z"/></svg></a>
+                </div>
+            </div>
+            <div class="product-card fade-up">
+                <div class="product-card-img">
+                    <img src="https://images.unsplash.com/photo-1617343267017-e344bdc7ec94?w=600&h=400&fit=crop" alt="Resine sintetiche per campi sportivi">
+                    <div class="product-card-overlay"></div>
+                </div>
+                <div class="product-card-body">
+                    <h3>Resine Sintetiche</h3>
+                    <p>Superfici elastiche Baumapave e Baumacuschion per campi indoor e outdoor. Eccellenti propriet&agrave; elastiche, riducono i traumi articolari.</p>
+                    <a href="#contatti" class="product-link">Richiedi info <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6-6-6z"/></svg></a>
+                </div>
+            </div>
+            <div class="product-card fade-up">
+                <div class="product-card-img">
+                    <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&h=400&fit=crop" alt="Attrezzature sportive">
+                    <div class="product-card-overlay"></div>
+                </div>
+                <div class="product-card-body">
+                    <h3>Attrezzature Sportive</h3>
+                    <p>Fornitura e montaggio di attrezzature per tutti gli sport, palestre e spogliatoi. Qualit&agrave;, sicurezza e design nel rispetto delle normative.</p>
+                    <a href="#contatti" class="product-link">Richiedi info <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6-6-6z"/></svg></a>
+                </div>
+            </div>
+            <div class="product-card fade-up">
+                <div class="product-card-img">
+                    <img src="https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?w=600&h=400&fit=crop" alt="Recinzioni per impianti sportivi">
+                    <div class="product-card-overlay"></div>
+                </div>
+                <div class="product-card-body">
+                    <h3>Recinzioni</h3>
+                    <p>Recinzioni professionali per tennis, calcetto e polivalenti. Pali zincati, rete "zincoplast" e sistema Italstadio conforme alle norme UNI.</p>
+                    <a href="#contatti" class="product-link">Richiedi info <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6-6-6z"/></svg></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PERCHE NOI -->
+<section class="why-us" id="perche-noi">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-tag">Perch&eacute; Sceglierci</div>
+            <h2>Oltre 50 anni di eccellenza nel settore sportivo</h2>
+            <p>Dal 1970 siamo il partner di riferimento per la realizzazione di impianti sportivi in Italia.</p>
+        </div>
+        <div class="why-grid">
+            <div class="why-card fade-up">
+                <div class="why-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                </div>
+                <h3>Qualit&agrave; Certificata</h3>
+                <p>Prodotti conformi ai regolamenti delle Federazioni Sportive italiane e internazionali. Certificazione I.T.F. per il tennis.</p>
+            </div>
+            <div class="why-card fade-up">
+                <div class="why-icon">
+                    <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                </div>
+                <h3>Esperienza dal 1970</h3>
+                <p>Oltre mezzo secolo di presenza nel settore sportivo con partnership consolidate con i maggiori produttori mondiali.</p>
+            </div>
+            <div class="why-card fade-up">
+                <div class="why-icon">
+                    <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
+                </div>
+                <h3>Chiavi in Mano</h3>
+                <p>Dalla progettazione alla realizzazione, ci occupiamo di ogni aspetto del tuo impianto sportivo con assistenza completa.</p>
+            </div>
+            <div class="why-card fade-up">
+                <div class="why-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+                </div>
+                <h3>Garanzia e Assistenza</h3>
+                <p>Garanzia su tutti i prodotti e servizio di assistenza post-vendita dedicato. Manutenzione ridotta e materiali resistenti.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-content">
+            <h2>Hai un progetto in mente?</h2>
+            <p>Contattaci per un sopralluogo gratuito e un preventivo personalizzato. Il nostro team &egrave; pronto ad aiutarti a realizzare l'impianto sportivo perfetto.</p>
+            <div class="cta-buttons">
+                <a href="tel:+390422608608" class="btn btn-white">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                    Chiamaci Ora
+                </a>
+                <a href="#contatti" class="btn btn-ghost">Compila il Form</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTATTI -->
+<section class="contact" id="contatti">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-tag">Contattaci</div>
+            <h2>Parliamo del tuo progetto</h2>
+            <p>Compila il form per ricevere un preventivo gratuito e senza impegno.</p>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                    </div>
+                    <div>
+                        <h4>Sede</h4>
+                        <p>Via G. Verdi, 65<br>31020 Villorba (TV)</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                    </div>
+                    <div>
+                        <h4>Telefono</h4>
+                        <p><a href="tel:+390422608608">+39 0422 608 608</a></p>
+                        <p>Fax: +39 0422 608 635</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    </div>
+                    <div>
+                        <h4>Email</h4>
+                        <p><a href="mailto:info@bauma.it">info@bauma.it</a></p>
+                        <p><a href="mailto:commerciale@bauma.it">commerciale@bauma.it</a></p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                    </div>
+                    <div>
+                        <h4>Orari</h4>
+                        <p>Lun - Ven: 8:30 - 12:30 / 14:00 - 18:00</p>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form">
+                <h3>Richiedi un Preventivo Gratuito</h3>
+                <p>Compila il form e ti ricontatteremo entro 24 ore.</p>
+                <form id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nome">Nome *</label>
+                            <input type="text" id="nome" name="nome" required placeholder="Il tuo nome">
+                        </div>
+                        <div class="form-group">
+                            <label for="cognome">Cognome *</label>
+                            <input type="text" id="cognome" name="cognome" required placeholder="Il tuo cognome">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required placeholder="email@esempio.it">
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono">Telefono</label>
+                            <input type="tel" id="telefono" name="telefono" placeholder="+39 ...">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="servizio">Servizio di interesse</label>
+                        <select id="servizio" name="servizio">
+                            <option value="">Seleziona un servizio...</option>
+                            <option value="erba-sintetica">Erba Sintetica</option>
+                            <option value="landscaping">Landscaping</option>
+                            <option value="pvc">Pavimentazioni PVC</option>
+                            <option value="resine">Resine Sintetiche</option>
+                            <option value="attrezzature">Attrezzature Sportive</option>
+                            <option value="recinzioni">Recinzioni</option>
+                            <option value="completo">Impianto Completo</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="messaggio">Messaggio</label>
+                        <textarea id="messaggio" name="messaggio" placeholder="Descrivi il tuo progetto o la tua esigenza..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary form-submit">Invia Richiesta</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                    </div>
+                    <div class="logo-text">
+                        Bauma<br>Sportimpianti
+                        <span>Dal 1970</span>
+                    </div>
+                </div>
+                <p>Qualit&agrave; ed esperienza al servizio dello sport. Da oltre 50 anni realizziamo impianti sportivi completi su tutto il territorio nazionale.</p>
+            </div>
+            <div>
+                <h4>Prodotti</h4>
+                <ul>
+                    <li><a href="#prodotti">Erba Sintetica</a></li>
+                    <li><a href="#prodotti">Landscaping</a></li>
+                    <li><a href="#prodotti">PVC</a></li>
+                    <li><a href="#prodotti">Resine Sintetiche</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Servizi</h4>
+                <ul>
+                    <li><a href="#prodotti">Attrezzature</a></li>
+                    <li><a href="#prodotti">Recinzioni</a></li>
+                    <li><a href="#contatti">Sopralluogo</a></li>
+                    <li><a href="#contatti">Preventivi</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contatti</h4>
+                <ul>
+                    <li><a href="tel:+390422608608">+39 0422 608 608</a></li>
+                    <li><a href="mailto:info@bauma.it">info@bauma.it</a></li>
+                    <li><a href="mailto:commerciale@bauma.it">commerciale@bauma.it</a></li>
+                    <li><a href="#">Villorba (TV)</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>BAUMA SPORTIMPIANTI s.r.l. - P.IVA 00199260266 - REA TV-102089</span>
+            <span>Via G. Verdi 65, 31020 Villorba (TV)</span>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        navbar.classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    // Mobile menu toggle
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navLinks = document.getElementById('navLinks');
+    mobileToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+
+    // Close mobile menu on link click
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => navLinks.classList.remove('active'));
+    });
+
+    // Intersection Observer for fade-up animations
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+
+    // Form submit handler (demo)
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const btn = this.querySelector('button[type="submit"]');
+        btn.textContent = 'Richiesta Inviata!';
+        btn.style.background = '#2d7a46';
+        setTimeout(() => {
+            btn.textContent = 'Invia Richiesta';
+            btn.style.background = '';
+            this.reset();
+        }, 3000);
+    });
+
+    // Counter animation
+    function animateCounters() {
+        document.querySelectorAll('.stat-number').forEach(counter => {
+            const text = counter.textContent;
+            const match = text.match(/(\d+)/);
+            if (!match) return;
+            const target = parseInt(match[0]);
+            const suffix = text.replace(match[0], '');
+            let current = 0;
+            const increment = target / 40;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    counter.textContent = text;
+                    clearInterval(timer);
+                } else {
+                    counter.textContent = Math.floor(current) + suffix;
+                }
+            }, 30);
+        });
+    }
+
+    // Trigger counter animation when hero is visible
+    const heroObserver = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+            animateCounters();
+            heroObserver.disconnect();
+        }
+    });
+    heroObserver.observe(document.querySelector('.hero-card'));
+</script>
+
+</body>
+</html>
